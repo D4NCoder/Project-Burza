@@ -54,7 +54,7 @@ using Project_Burza.Models;
             WriteLiteral("<!DOCTYPE html>\r\n<html lang=\"zxx\" class=\"no-js\">\r\n");
             EndContext();
             BeginContext(50, 1293, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7c87c581b1b349128f89daa2a82c736c", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8541e5265e9d438ea4d8b67d5b9d26eb", async() => {
                 BeginContext(56, 1280, true);
                 WriteLiteral(@"
     <!-- Mobile Specific Meta -->
@@ -107,7 +107,7 @@ using Project_Burza.Models;
             WriteLiteral("\r\n");
             EndContext();
             BeginContext(1345, 4151, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "82d1c7423acb49d2af649e5d950d36fe", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "79dbc1d7c457454dbb0354f2cdd6caa5", async() => {
                 BeginContext(1351, 405, true);
                 WriteLiteral(@"
     <header id=""header"">

@@ -36,3 +36,4 @@ C:\Users\Dan\source\repos\Project-Burza\Project-Burza\obj\Debug\netcoreapp2.1\Ra
 C:\Users\Dan\source\repos\Project-Burza\Project-Burza\obj\Debug\netcoreapp2.1\Razor\Views\Trip\Trips.g.cshtml.cs
 C:\Users\Dan\source\repos\Project-Burza\Project-Burza\obj\Debug\netcoreapp2.1\Razor\Views\Home\LawSecurity.g.cshtml.cs
 C:\Users\Dan\source\repos\Project-Burza\Project-Burza\obj\Debug\netcoreapp2.1\Razor\Views\Login\Login.g.cshtml.cs
+C:\Users\Dan\source\repos\Project-Burza\Project-Burza\obj\Debug\netcoreapp2.1\Razor\Views\Login\Register.g.cshtml.cs

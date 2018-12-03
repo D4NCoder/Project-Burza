@@ -5,9 +5,9 @@
         <div class="row d-flex align-items-center justify-content-center">
             <div class="about-content col-lg-12">
                 <h1 class="text-white">
-                    Přihlásit se
+                    Registrace
                 </h1>
-                <p class="text-white link-nav"><a href="@Url.Action("Index", "Home")">Domů </a>  <span class="lnr lnr-arrow-right"></span>  <a href="@Url.Action("LawSecurity", "Home")" "> Přihlásit se</a></p>
+                <p class="text-white link-nav"><a href="@Url.Action("Index", "Home")">Domů </a>  <span class="lnr lnr-arrow-right"></span>  <a href="@Url.Action("LawSecurity", "Home")" "> Zaregistrovat se</a></p>
             </div>
         </div>
     </div>
@@ -19,11 +19,17 @@
             <div class="row">
                 <div class="col-md-12 col-lg-6 mb-5 m-auto mt-md-3">
                     <form action="#" class="p-5 mb-20 bg-white">
-                        <h2 class="mb-4 text-black">Přihlásit se</h2>
+                        <h2 class="mb-4 text-black">Zaregistruj se</h2>
 
                         <div class="row form-group">
                             <div class="col-md-12">
-                                <label class="font-weight-bold" for="email2">Email</label>
+                                <label class="font-weight-bold" for="email2">Jméno a příjmení</label>
+                                <input type="text" id="Name" class="form-control rounded-0">
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <label class="font-weight-bold" for="email2">E-mail</label>
                                 <input type="email" id="email2" class="form-control rounded-0">
                             </div>
                         </div>
@@ -33,27 +39,32 @@
                                 <input type="password" id="password" class="form-control rounded-0">
                             </div>
                         </div>
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <label class="font-weight-bold" for="password">Znovu heslo</label>
+                                <input type="password" id="password" class="form-control rounded-0">
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <label class="font-weight-bold" for="email2">Tel. číslo (opt.)</label>
+                                <input type="number" id="email2" class="form-control rounded-0">
+                            </div>
+                        </div>
 
                         <div class="row form-group">
                             <div class="col-md-12">
                                 <label class="font-weight-normal" for="remember">
                                     <input type="checkbox" id="remember">
-                                    Zapamatovat
+                                    Souhlasím s všeobecnými podmínkami
                                 </label>
                             </div>
                         </div>
 
-                        <div class="row form-group mb-2">
-                            <div class="col-md-12">
-                                <p>Nemáš založený účet? <a href="@Url.Action("Register", "Login")">Zaregistrovat</a>.
-                                <br />Zapomněl/a jsi heslo? <a href="#">Klikni zde</a></p>
-
-                            </div>
-                        </div>
 
                         <div class="row form-group">
                             <div class="col-md-12">
-                                <input type="submit" value="Login" class="btn btn-primary  py-2 px-4 rounded-0">
+                                <input type="submit" value="Registrovat se" class="btn btn-primary  py-2 px-4 rounded-0">
                             </div>
                         </div>
 

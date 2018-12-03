@@ -12,5 +12,10 @@ namespace Project_Burza.Controllers
         {
             return View();
         }
+
+        public IActionResult Register()
+        {
+            return View();
+        }
     }
 }

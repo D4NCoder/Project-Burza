@@ -105,7 +105,7 @@ using Project_Burza.Models;
             WriteLiteral("e.support@gmail.com</h5>\r\n                        <p>Neboj se nás kontaktovat přes e-mail!</p>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <div class=\"col-lg-8\">\r\n                ");
             EndContext();
             BeginContext(2268, 1587, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "feb6f7545c074996b83820a6de16dfea", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f8d4f4251caa4839a4325a2e52b12243", async() => {
                 BeginContext(2360, 1488, true);
                 WriteLiteral(@"
                     <div class=""row"">
