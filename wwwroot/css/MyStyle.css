@@ -1135,3 +1135,96 @@
 }
 
 
+
+
+    /*----------------------------------------*/
+/*  3.  Main Menu CSS
+/*----------------------------------------*/
+.nav-tabs.notika-menu-wrap{
+	border-bottom: 0px solid #ddd;
+}
+.nav-tabs.notika-menu-wrap>li.active>a, .nav-tabs.notika-menu-wrap>li.active>a:focus, .nav-tabs.notika-menu-wrap>li.active>a:hover{
+	border: 0px solid #ddd;
+	border:none;
+}
+.notika-tab-menu-bg{
+	position:relative;
+}
+.notika-tab-menu-bg:before {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    background: #fff;
+    content: "";
+    z-index: 9;
+    height: 100%;
+}
+.custom-menu-content ul.notika-main-menu-dropdown {
+    position: relative;
+    z-index: 99;
+}
+ul.notika-menu-wrap li a{
+	font-size: 15px;
+    color: #333;
+    padding: 15px 25px;
+	border:none;
+}
+.custom-menu-content ul.notika-main-menu-dropdown li{
+	display:inline-block;
+}
+.custom-menu-content ul.notika-main-menu-dropdown li a {
+    padding: 20px 20px;
+    display: block;
+	font-size:14px;
+	color:#333;
+}
+.custom-menu-content ul.notika-main-menu-dropdown li ul.layout-more-dp{
+	position: absolute;
+    z-index: 999;
+    width: 200px;
+    left: -20px;
+    border: none;
+    border-radius: 0px;
+}
+.custom-menu-content ul.notika-main-menu-dropdown li ul.layout-more-dp li a{
+	font-size: 14px;
+    color: #333;
+    padding: 10px 20px;
+}
+.animated{
+	-webkit-animation-duration:1s;
+	animation-duration:1s;
+	-webkit-animation-fill-mode:none!important;
+	animation-fill-mode:none!important
+}
+.mg-t-80-b-40{
+	margin:102px 0px 40px 0px;
+}
+.mean-container .mean-nav ul li a {
+    color: #333;
+}
+.mean-container .mean-nav ul li a:hover {
+    color: #00c292;
+}
+.box-layout .header-top-area {
+		width: 1200px;
+}
+.wb-traffic-inner{
+	padding:20px;
+	background:#fff;
+	display:flex;
+}
+.website-traffic-ctn h2, .curved-ctn h2, .past-day-statis h2, .email-ctn-round h2, .recent-post-title h2, .recent-items-title h2, .realtime-title h2, .contact-hd h2, .animation-ctn-hd h2, .alert-hd h2, .color-hd h2, .tab-hd h2, .wizard-hd h2, .dropdown-trig-hd h2, .modals-hd h2, .accordion-hd h2, .tooltips-hd h2, .popovers-hd h2, .typography-list h2, .typography-heading h2, .typography-in-hd h2, .tpgp-hp-hd h2, .view-mail-hrd h2, .multiupload-sys h2, .basic-tb-hd h2{
+	font-size:20px;
+	color:#333;
+}
+.website-traffic-ctn p, .curved-ctn p, .recent-post-title p, .recent-post-it-ctn p, .view-ml-rl p, .mail-ads p, .multiupload-sys p{
+	font-size:14px;
+	color:#333;
+	margin:0;
+}
+.sparkline-bar-stats1, .sparkline-bar-stats2, .sparkline-bar-stats3, .sparkline-bar-stats4{
+	margin-left: auto;
+	margin-top:10px;
+}
