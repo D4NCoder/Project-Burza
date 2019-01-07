@@ -380,7 +380,7 @@
     line-height: 57px;
     background: #fa9e1b;
     vertical-align: middle;
-    border-radius: 70%;
+    border-radius: 16px;
     -webkit-transform: translateY(-4px);
     -moz-transform: translateY(-4px);
     -ms-transform: translateY(-4px);

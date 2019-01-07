@@ -49,7 +49,7 @@
         <div class="container main-menu">
             <div class="row align-items-center justify-content-between d-flex">
                 <div id="logo">
-                    <a href="index.html"><img src="/img/logo.png" alt="" title="" /></a>
+                    <a href="@Url.Action("Index", "Home")"><img src="/img/logo.png" alt="" title="" /></a>
                 </div>
                 <nav id="nav-menu-container">
                     <ul class="nav-menu">
@@ -57,10 +57,10 @@
                         <li><a href="@Url.Action("About","Home")">O nás</a></li>
                         <li><a href="@Url.Action("Trips","Trip")">Dovolené</a></li>
                         <li><a href="@Url.Action("LawSecurity","Home")">Právní ochrana</a></li>
-                        <li><a href="@Url.Action("Tutorial","Home")">Návod</a></li>
+                        <!--<li><a href="@Url.Action("Tutorial","Home")">Návod</a></li>-->
                         <li><a href="@Url.Action("Contact","Home")">Kontakt</a></li>
 
-                        <li class="btn btn-warning circle Login"> <a href="@Url.Action("Login", "Login")">Přihlásit se</a></li>
+                        @await Html.PartialAsync("_LoginPartial")
                     </ul>
                 </nav><!-- #nav-menu-container -->
             </div>

@@ -1,0 +1,90 @@
+﻿@using Project_Burza.Models;
+@model TripModel;
+
+<!-- start banner Area -->
+<section class="relative about-banner">
+    <div class="overlay overlay-bg"></div>
+    <div class="container">
+        <div class="row d-flex align-items-center justify-content-center">
+            <div class="about-content col-lg-12">
+                <h1 class="text-white">
+                    Sprava uctu
+                </h1>
+                <p class="text-white link-nav"><a href="@Url.Action("Index", "Home")">Domů </a>  <span class="lnr lnr-arrow-right"></span>  <a href="@Url.Action("LawSecurity", "Home")"> Sprava uctu</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="price-area">
+    <div class="site-section price-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-lg-6 mb-5 m-auto mt-md-3 card" style="background-color:rgba(255, 193, 7, 0.10)">
+                    <form method="post" asp-action="AddNewPostAsync" asp-controller="Account">
+                        <div></div>
+                        <h2 class="mb-4 text-black">Nový příspěvek</h2>
+
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <label class="font-weight-bold" for="email2">Název výletu</label>
+                                <input type="text" name="name" asp-for="Name" required="" class="single-input-primary">
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <label class="font-weight-bold" for="password">Cena</label>
+                                <input type="number" id="price" asp-for="Price" name="price" class="single-input-accent">
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <label class="font-weight-bold" for="password">Lokace</label>
+                                <input type="text" id="location" asp-for="Location" name="location" class="single-input-accent">
+                            </div>
+                        </div>
+
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <label class="font-weight-bold" for="password">Od (datum)</label>
+                                <input type="date" id="from" asp-for="From" name="from" class="single-input-accent">
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <label class="font-weight-bold" for="password">Do (datum)</label>
+                                <input type="date" id="to" asp-for="To" name="to" class="single-input-accent">
+                            </div>
+                        </div>
+
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <label class="font-weight-bold" for="password">Popis(max. 500 znaků)</label>
+                                <textarea class="single-textarea" asp-for="Description" required=""></textarea>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <label class="font-weight-bold" for="password">Odkaz na webové stránky</label>
+                                <input type="number" id="websitelink" asp-for="WebsiteLink" name="websitelink" class="single-input-accent">
+                            </div>
+                        </div>
+
+
+
+                        <div class="row form-group">
+                            <div class="col-md-12 text-center">
+                                <input type="submit" value="Přidat nový příspěvek" class="btn btn-primary  py-2 px-4 rounded-0" />
+                            </div>
+                        </div>
+
+
+                    </form>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</section>
+
+

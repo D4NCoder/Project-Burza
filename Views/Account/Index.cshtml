@@ -1,0 +1,179 @@
+@using Project_Burza.Data;
+@model ApplicationUser;
+
+
+@{ 
+    string[] NameSplit = Model.NameAndSurname.Split(' ');
+    string FirstName = NameSplit[0];
+    string LastName = NameSplit[1];
+}
+
+<!-- start banner Area -->
+<section class="relative about-banner">
+    <div class="overlay overlay-bg"></div>
+    <div class="container">
+        <div class="row d-flex align-items-center justify-content-center">
+            <div class="about-content col-lg-12">
+                <h1 class="text-white">
+                    Správa účtu
+                </h1>
+                <p class="text-white link-nav"><a href="@Url.Action("Index", "Home")">Domů </a>  <span class="lnr lnr-arrow-right"></span>  <a href="@Url.Action("LawSecurity", "Home")"> Správa účtu</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="">
+    <div class="emp-profile">
+        <form method="post">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="profile-img">
+                        <img src="~/images/Dan.jpg" alt="" />
+                        <div class="file btn btn-lg btn-primary">
+                            Změnit fotku
+                            <input type="file" name="file" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="profile-head">
+                        <h5>
+                            Dan Vyhlídal
+                        </h5>
+                        <h6>
+                            Běžný uživatel
+                        </h6>
+                        <p class="proile-rating">Příspěvky : <span>0</span></p>
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Info</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Moje příspěvky</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <a class="genric-btn default-border circle medium mb-3" name="btnAddMore">Upravit profil</a>
+                </div>
+            </div>
+            <div class="row" >
+                <div class="col-md-4" style="visibility:hidden;">
+                   
+                </div>
+                <div class="col-md-8">
+                    <div class="tab-content profile-tab" id="myTabContent">
+                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Jméno</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>@FirstName</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Přijmení</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>@LastName</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Email</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>@Model.Email</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Heslo</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>************</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Phone</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>@Model.PhoneNumber</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                            <div class="row" style="margin-top: -20px;">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="table-responsive">
+                                                        <a href="@Url.Action("NewPost","Account")" class="genric-btn primary circle medium mb-3" style="float:right;">Přidat nový příspěvek</a>
+                                                        <table class="table center-aligned-table">
+                                                            <thead>
+                                                                <tr class="text-primary">
+                                                                    <th>Název výletu</th>
+                                                                    <th>Cena</th>
+                                                                    <th>Datum</th>
+                                                                    <th>Lokace</th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr class="">
+                                                                    <td>Chata v Krkonoších</td>
+                                                                    <td>33 600</td>
+                                                                    <td>12.3. 2018</td>
+                                                                    <td>Krkonoše, škraloupy</td>
+                                                                    <td><a href="#" class="genric-btn info circle small">Editovat</a></td>
+                                                                    <td><a href="#" class="genric-btn danger circle small">Smazat</a></td> 
+                                                                </tr>
+                                                                <tr class="">
+                                                                    <td>Chata v Alpách</td>
+                                                                    <td>50 600</td>
+                                                                    <td>5.1. 2018</td>
+                                                                    <td>Alpy, Chata "Pod Sněhem"</td>
+                                                                    <td><a href="#" class="genric-btn info circle small">Editovat</a></td>
+                                                                    <td><a href="#" class="genric-btn danger circle small">Smazat</a></td>
+                                                                </tr>
+                                                                <tr class="">
+                                                                    <td>Chata v buřicích</td>
+                                                                    <td>12 600</td>
+                                                                    <td>5.1. 2018</td>
+                                                                    <td>Burčice, Chata "U tvojí mamky"</td>
+                                                                    <td><a href="#" class="genric-btn info circle small">Editovat</a></td>
+                                                                    <td><a href="#" class="genric-btn danger circle small">Smazat</a></td>
+                                                                </tr>
+                                                                <tr class="">
+                                                                    <td>Chorvatsko</td>
+                                                                    <td>8 640</td>
+                                                                    <td>5.1. 2018</td>
+                                                                    <td>Kamenolupy</td>
+                                                                    <td><a href="#" class="genric-btn info circle small">Editovat</a></td>
+                                                                    <td><a href="#" class="genric-btn danger circle small">Smazat</a></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                        </div>
+                                    </div>
+                                </div>
+                           </div>
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>

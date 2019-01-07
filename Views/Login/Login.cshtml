@@ -18,26 +18,32 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 col-lg-6 mb-5 m-auto mt-md-3">
-                    <form action="@Url.Action("Account", "Login")" class="p-5 mb-20 bg-white">
+                    <form method="post" action="@Url.Action("LogInUserAsync","Login")" class="p-5 mb-20 bg-white">
                         <h2 class="mb-4 text-black">Přihlásit se</h2>
 
                         <div class="row form-group">
                             <div class="col-md-12">
-                                <label class="font-weight-bold" for="email2">Email</label>
-                                <input type="email" id="email2" class="form-control rounded-0">
+                                <label class="font-weight-bold" for="email2">Name</label>
+                                <input type="text" id="name" name="name" class="form-control rounded-0">
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <label class="font-weight-bold" for="email2">Name</label>
+                                <input type="text" id="name" name="name" class="form-control rounded-0">
                             </div>
                         </div>
                         <div class="row form-group">
                             <div class="col-md-12">
                                 <label class="font-weight-bold" for="password">Heslo</label>
-                                <input type="password" id="password" class="form-control rounded-0">
+                                <input type="password" id="password" name="password" class="form-control rounded-0">
                             </div>
                         </div>
 
                         <div class="row form-group">
                             <div class="col-md-12">
                                 <label class="font-weight-normal" for="remember">
-                                    <input type="checkbox" id="remember">
+                                    <input type="checkbox" id="remember" name="remember">
                                     Zapamatovat
                                 </label>
                             </div>
@@ -45,15 +51,17 @@
 
                         <div class="row form-group mb-2">
                             <div class="col-md-12">
-                                <p>Nemáš založený účet? <a href="@Url.Action("Register", "Login")">Zaregistrovat</a>.
-                                <br />Zapomněl/a jsi heslo? <a href="#">Klikni zde</a></p>
+                                <p>
+                                    Nemáš založený účet? <a href="@Url.Action("Register", "Login")">Zaregistrovat</a>.
+                                    <br />Zapomněl/a jsi heslo? <a href="#">Klikni zde</a>
+                                </p>
 
                             </div>
                         </div>
 
                         <div class="row form-group">
                             <div class="col-md-12">
-                                <input  type="submit" value="Login" class="btn btn-primary  py-2 px-4 rounded-0">
+                                <input type="submit" value="Login" class="btn btn-primary  py-2 px-4 rounded-0" />
                             </div>
                         </div>
 

@@ -161,7 +161,7 @@ $(document).ready(function() {
     //------- Smooth Scroll  js --------//  
 
     $('.nav-menu a, #mobile-nav a, .scrollto').on('click', function() {
-        if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+        if (location.pathname.replace(/^\//, '') === this.pathname.replace(/^\//, '') && location.hostname === this.hostname) {
             var target = $(this.hash);
             if (target.length) {
                 var top_space = 0;
@@ -225,7 +225,7 @@ $(document).ready(function() {
         var path = window.location.pathname.split("/").pop();
 
         // Account for home page with empty path
-        if (path == '') {
+        if (path === '') {
             path = 'index.html';
         }
 
@@ -257,6 +257,7 @@ $(document).ready(function() {
 
     if (document.getElementById("map")) {
         google.maps.event.addDomListener(window, 'load', init);
+
 
         function init() {
             var mapOptions = {
