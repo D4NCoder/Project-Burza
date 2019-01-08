@@ -1,4 +1,10 @@
-﻿<!-- start banner Area -->
+﻿@using Microsoft.AspNetCore.Identity
+@using Project_Burza.Data;
+
+@inject SignInManager<ApplicationUser> SignInManager
+
+
+<!-- start banner Area -->
 <section class="relative about-banner">
     <div class="overlay overlay-bg"></div>
     <div class="container">
@@ -13,14 +19,15 @@
     </div>
 </section>
 <!-- End banner Area -->
+@if (SignInManager.IsSignedIn(User))
+{
+    <section>
+        <div class="text-center">
+            <a class="btn btn-warning circle LoginButton" href="@Url.Action("NewPost","Account")">Přidat vlastní příspěvek</a>
+        </div>
+    </section>
+}
 
-<section>
-    <div class="text-center">
-        <a class="btn btn-warning circle LoginButton" href="#">Přidat vlastní příspěvek</a>
-    </div>
-
-
-</section>
 
 <!-- Start of a Login button (if the user is not logged in)
 

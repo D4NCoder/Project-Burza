@@ -60,7 +60,7 @@ namespace Project_Burza.Controllers
         {
             return View();
         }
-
+        
         [HttpPost]
         public async Task<IActionResult> AddNewPostAsync(TripModel model)
         {
