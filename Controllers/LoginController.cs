@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
@@ -7,6 +8,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Project_Burza.Data;
 using Project_Burza.Models;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Project_Burza.Controllers
 {
@@ -26,7 +28,7 @@ namespace Project_Burza.Controllers
         public IActionResult Login()
         {
             // This is making sure that our database exists
-            _context.Database.EnsureCreated();
+            //_context.Database.EnsureCreated();
 
             return View();
         }
@@ -56,16 +58,20 @@ namespace Project_Burza.Controllers
             // Making sure that passwords match together and that user agrees with terms
             if(model.Password == model.PasswordAgain && model.UserAgreement == true)
             {
-                var result = await _userManager.CreateAsync(new ApplicationUser
+                var apUser = new ApplicationUser
                 {
                     Email = model.Email,
                     NameAndSurname = model.NameAndSurname,
                     PhoneNumber = model.PhoneNumber,
                     UserName = model.Email
 
-                }, model.Password);
+                };
 
-                if(result.Succeeded)
+                var result = await _userManager.CreateAsync(apUser, model.Password);
+
+
+
+                if (result.Succeeded)
                 {
                     // TODO: redirect to sign in page
                     return RedirectToAction("Login", "Login");
@@ -84,8 +90,5 @@ namespace Project_Burza.Controllers
 
             return RedirectToAction("Index", "Home");
         }
-
-
-
     }
 }

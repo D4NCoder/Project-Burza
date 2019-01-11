@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,6 +8,8 @@ namespace Project_Burza.Models
 {
     public class UserModel
     {
+        public object Id { get; set; }
+
         public string NameAndSurname { get; set; }
 
         public string Email { get; set; }
@@ -18,5 +21,7 @@ namespace Project_Burza.Models
         public string PhoneNumber { get; set; }
 
         public bool UserAgreement { get; set; }
+
+        public byte[] ProfilePicture { get; set; }
     }
 }

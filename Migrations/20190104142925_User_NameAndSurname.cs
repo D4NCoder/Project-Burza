@@ -41,7 +41,9 @@ namespace Project_Burza.Migrations
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
                     AccessFailedCount = table.Column<int>(nullable: false),
-                    NameAndSurname = table.Column<string>(nullable: false)
+                    NameAndSurname = table.Column<string>(nullable: false),
+                    ProfilePicture = table.Column<byte[]>(nullable:false)
+
                 },
                 constraints: table =>
                 {

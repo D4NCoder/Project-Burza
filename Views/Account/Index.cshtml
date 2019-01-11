@@ -1,9 +1,9 @@
 @using Project_Burza.Data;
-@model ApplicationUser;
+@model AccountModel;
 
 
 @{ 
-    string[] NameSplit = Model.NameAndSurname.Split(' ');
+    string[] NameSplit = Model.User.NameAndSurname.Split(' ');
     string FirstName = NameSplit[0];
     string LastName = NameSplit[1];
 }
@@ -28,22 +28,26 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="profile-img">
-                        <img src="~/images/Dan.jpg" alt="" />
-                        <div class="file btn btn-lg btn-primary">
-                            Změnit fotku
-                            <input type="file" name="file" />
-                        </div>
+                        @if (!(bool)ViewData["isProfilePicture"])
+                        {
+                            <img src="~/ProfilePic/ProfileAvatar.png" style="max-height:220px; width:auto;" alt="" />
+                        }
+
+                        else
+                        {
+                            <img src="@Url.Action("GetProfilePictureFromDatabase", "Account")" alt="" />
+                        }
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="profile-head">
                         <h5>
-                            Dan Vyhlídal
+                            @Model.User.NameAndSurname
                         </h5>
                         <h6>
                             Běžný uživatel
                         </h6>
-                        <p class="proile-rating">Příspěvky : <span>0</span></p>
+                        <p class="proile-rating">Příspěvky : <span>@Model.TripPosts.Count()</span></p>
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Info</a>
@@ -55,7 +59,7 @@
                     </div>
                 </div>
                 <div class="col-md-2">
-                    <a class="genric-btn default-border circle medium mb-3" name="btnAddMore">Upravit profil</a>
+                    <a class="genric-btn default-border circle medium mb-3" href="@Url.Action("EditUser","Account")" name="btnAddMore">Upravit profil</a>
                 </div>
             </div>
             <div class="row" >
@@ -86,7 +90,7 @@
                                     <label>Email</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <p>@Model.Email</p>
+                                    <p>@Model.User.Email</p>
                                 </div>
                             </div>
                             <div class="row">
@@ -99,10 +103,10 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label>Phone</label>
+                                    <label>Telefonní číslo</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <p>@Model.PhoneNumber</p>
+                                    <p>@Model.User.PhoneNumber</p>
                                 </div>
                             </div>
                         </div>
@@ -126,39 +130,33 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                <tr class="">
-                                                                    <td>Chata v Krkonoších</td>
-                                                                    <td>33 600</td>
-                                                                    <td>12.3. 2018</td>
-                                                                    <td>Krkonoše, škraloupy</td>
-                                                                    <td><a href="#" class="genric-btn info circle small">Editovat</a></td>
-                                                                    <td><a href="#" class="genric-btn danger circle small">Smazat</a></td> 
-                                                                </tr>
-                                                                <tr class="">
-                                                                    <td>Chata v Alpách</td>
-                                                                    <td>50 600</td>
-                                                                    <td>5.1. 2018</td>
-                                                                    <td>Alpy, Chata "Pod Sněhem"</td>
-                                                                    <td><a href="#" class="genric-btn info circle small">Editovat</a></td>
-                                                                    <td><a href="#" class="genric-btn danger circle small">Smazat</a></td>
-                                                                </tr>
-                                                                <tr class="">
-                                                                    <td>Chata v buřicích</td>
-                                                                    <td>12 600</td>
-                                                                    <td>5.1. 2018</td>
-                                                                    <td>Burčice, Chata "U tvojí mamky"</td>
-                                                                    <td><a href="#" class="genric-btn info circle small">Editovat</a></td>
-                                                                    <td><a href="#" class="genric-btn danger circle small">Smazat</a></td>
-                                                                </tr>
-                                                                <tr class="">
-                                                                    <td>Chorvatsko</td>
-                                                                    <td>8 640</td>
-                                                                    <td>5.1. 2018</td>
-                                                                    <td>Kamenolupy</td>
-                                                                    <td><a href="#" class="genric-btn info circle small">Editovat</a></td>
-                                                                    <td><a href="#" class="genric-btn danger circle small">Smazat</a></td>
-                                                                </tr>
+                                                                @if (Model.TripPosts != null && Model.TripPosts.Count() != 0)
+                                                                {
+                                                                    @for (int i = 0; i < Model.TripPosts.Count(); i++)
+                                                                    {
+                                                                        <tr class="">
+                                                                            <td>@Model.TripPosts.ToArray()[i].Name</td>
+                                                                            <td>@Model.TripPosts.ToArray()[i].Price</td>
+                                                                            <td>@Model.TripPosts.ToArray()[i].From.ToString("MM/dd/yyyy")</td>
+                                                                            <td>@Model.TripPosts.ToArray()[i].Location</td>
+                                                                            <td><a href="#" class="genric-btn info circle small">Editovat</a></td>
+                                                                            <td><a href="#" class="genric-btn danger circle small">Smazat</a></td>
+                                                                        </tr>
+                                                                    }
+                                                                }
+                                                                else
+                                                                {
+                                                                    <tr class="">
+                                                                        
+                                                                        <h6 style="margin-right:500px; margin-top:8px">Nenalezeny žádné záznamy. </h6>
+                                                                        
+                                                                        
+                                                                       
+                                                                    </tr>
+                                                                    
+                                                                }
                                                             </tbody>
+
                                                         </table>
                                                     </div>
                                                 </div>

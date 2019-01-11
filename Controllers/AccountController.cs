@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Project_Burza.Data;
 using Project_Burza.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -12,15 +14,16 @@ namespace Project_Burza.Controllers
 {
     public class AccountController : Controller
     {
-
+        protected SignInManager<ApplicationUser> _singInManager;
         protected UserManager<ApplicationUser> _userManager;
         protected ApplicationDbContext _context;
 
 
-        public AccountController(UserManager<ApplicationUser> userManager, ApplicationDbContext context)
+        public AccountController(UserManager<ApplicationUser> userManager, ApplicationDbContext context, SignInManager<ApplicationUser> singInManager)
         {
             this._userManager = userManager;
             this._context = context;
+            this._singInManager = singInManager;
         }
 
         [Authorize]
@@ -30,27 +33,69 @@ namespace Project_Burza.Controllers
             var username = HttpContext.User.Identity.Name;
             var result = await _userManager.FindByNameAsync(username);
 
+            AccountModel model = new AccountModel();
+            model.User = result;
+            model.TripPosts = _context.TripPosts.Where(x => x.AuthorName == model.User.Email).ToList();
+
+            if (model.User.ProfilePicture == null)
+                ViewData["isProfilePicture"] = false;
 
 
-            return View(result);
+            return View(model);
         }
 
 
         [HttpGet]
-        public IActionResult EditUser()
-        {
-            return View();
+        [Authorize]
+        public async Task<IActionResult> EditUser(UserModel model)
+        {   
+            var username = HttpContext.User.Identity.Name;
+            var result = await _userManager.FindByNameAsync(username);
+
+            var result2 = (!string.IsNullOrEmpty(model.NameAndSurname)) ? model : new UserModel
+            {
+                Id = result.Id,
+                NameAndSurname = result.NameAndSurname,
+                Email = result.Email,
+                Password = "",
+                PasswordAgain = "",
+                PhoneNumber = result.PhoneNumber,
+                UserAgreement = true,
+                ProfilePicture = result.ProfilePicture
+            };
+
+            if (result2.ProfilePicture == null)
+                ViewData["isProfilePicture"] = false;
+
+            return View(result2);
         }
 
         [HttpPost]
-        public async Task<IActionResult> EditUserAsync(UserModel model)
+        public async Task<IActionResult> EditUserAsync([FromForm]UserModel model, string oldName)
         {
-            // Find user by its name
-            var user = _userManager.FindByNameAsync(model.Email);
 
-            //TODO: update record in database
+                // Find user by its name
+                var user = await _userManager.FindByNameAsync($"{oldName}");
+    
+                //TODO: Add profile picture path loading to database
+                user.NameAndSurname = model.NameAndSurname;
+                user.Email = model.Email;
+                user.UserName = model.Email;
+                user.NameAndSurname = model.NameAndSurname;
+                user.PhoneNumber = model.PhoneNumber;
+                if(string.IsNullOrEmpty(model.Password))
+                    if(model.Password == model.PasswordAgain)
+                        user.PasswordHash = _userManager.PasswordHasher.HashPassword(user, model.Password);
+                var result = await _userManager.UpdateAsync(user);
+                await _singInManager.RefreshSignInAsync(user);
 
-            return RedirectToAction("Account");
+            if (result.Succeeded)
+                    return RedirectToAction("Index");
+            
+            
+
+
+            return RedirectToAction("EditUser", new { model });
         }
 
 
@@ -60,15 +105,27 @@ namespace Project_Burza.Controllers
         {
             return View();
         }
+
+
+        // TODO: DELETE User --> Adding new method / function for that purpose
+        public async Task<IActionResult> DeletePost(int idP)
+        {
+            // TODO: Implement Id feature to html code, so the script below can pull it from the atribute or something of specific html part
+            var entity = _context.TripPosts.Find(new { id = idP });
+
+            _context.TripPosts.Remove(entity);
+
+            return RedirectToAction("Index");
+        }
         
         [HttpPost]
-        public async Task<IActionResult> AddNewPostAsync(TripModel model)
+        public async Task<IActionResult> AddNewPostAsync(TripModel model, IFormFile file)
         {
             // TODO: Try to automatically pull the second tab with bunch of info about trips up
 
             if(ModelState.IsValid)
             {
-                // Setting up authors name as name of the Logged in user
+                //Setting up authors name as name of the Logged in user
                 model.AuthorName = HttpContext.User.Identity.Name;
 
                 // Calculating nights based on difference of the dates
@@ -81,16 +138,46 @@ namespace Project_Burza.Controllers
                 // Pull up the name of the picture
                 // Upload it on a server side
                 // Check if the picture is really formated in jpg / png
-                model.ProfilePicturePath = "bla bla bla";
+                model.TripPicture = await PutTripPictureToDatabase(file);
 
                 _context.TripPosts.Add(model);
                 await _context.SaveChangesAsync();
-                
+
             }
 
             return RedirectToAction("Index");
         }
 
+
+        public async Task<FileResult> GetProfilePictureFromDatabase()
+        {
+            var username = HttpContext.User.Identity.Name;
+
+            var user = await _userManager.FindByNameAsync(username);
+
+            byte[] pic = user.ProfilePicture;
+
+            return File(pic, "image/png");
+        }
+
+        public async Task<byte[]> PutTripPictureToDatabase(IFormFile model)
+        {
+            using (var memoryStream = new MemoryStream())
+            {
+                await model.CopyToAsync(memoryStream);
+                return memoryStream.ToArray();
+            }
+        }
+
+
+        public async Task<byte[]> PutProfilePictureToDatabase(IFormFile model)
+        {
+            using (var memoryStream = new MemoryStream())
+            {
+                await model.CopyToAsync(memoryStream);
+                return memoryStream.ToArray();
+            }
+        }
 
     }
 }

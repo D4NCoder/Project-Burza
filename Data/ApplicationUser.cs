@@ -11,6 +11,8 @@ namespace Project_Burza.Data
     {
         [Required]
         public string NameAndSurname { get; set; }
+            
+        public byte[] ProfilePicture { get; set; }
 
     }
 }

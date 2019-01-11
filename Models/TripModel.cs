@@ -34,7 +34,6 @@ namespace Project_Burza.Models
         [MaxLength(200)]
         public string Location { get; set; }
 
-        [MaxLength(500)]
-        public string ProfilePicturePath { get; set; }
+        public byte[] TripPicture { get; set; }
     }
 }

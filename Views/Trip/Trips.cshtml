@@ -1,8 +1,25 @@
 ﻿@using Microsoft.AspNetCore.Identity
-@using Project_Burza.Data;
+@using Project_Burza.Models
+@using Project_Burza.Data
+
+@model IEnumerable<TripViewModel>;
 
 @inject SignInManager<ApplicationUser> SignInManager
 
+
+@{ 
+    var viewModel = Model.ToList();
+
+    // 
+    string[] base64 = new string[Model.Count()];
+    string[] imgSrc = new string[Model.Count()];
+
+    for (int i = 0; i < Model.Count(); i++)
+    {
+        base64[i] = Convert.ToBase64String(Model.ToArray()[i].TripModel.TripPicture);
+        imgSrc[i] = String.Format("data:image/gif;base64,{0}", base64[i]);
+    }
+}
 
 <!-- start banner Area -->
 <section class="relative about-banner">
@@ -102,45 +119,50 @@
             <div class="col-lg-11 mt-20">
                 <!-- Offers Item -->
 
-                <div class="offers_item rating_4 mb-20">
-                    <div class="row">
-                        <div class="col-lg-3 col-1680-4">
-                            <div class="offers_image_container">
-                                <div class="offers_image_background" style="background-image:url('@Url.Content("/img/Krkonose.jpg")'); max-height: 292px;"></div>
-                                <div class="offer_name text-md-center"><a href="single_listing.html">VÍCE ZDE</a></div>
+                @for (int i = 0; i < viewModel.Count(); i++)
+                {
+                    <div class="offers_item rating_4 mb-20">
+                        <div class="row">
+                            <div class="col-lg-3 col-1680-4">
+                                <div class="offers_image_container">
+                                    <div class="offers_image_background" style="background-image:url('@imgSrc[i]'); max-height: 292px;"></div>
+                                    <div class="offer_name text-md-center"><a href="single_listing.html">VÍCE ZDE</a></div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-lg-8">
-                            <div class="offers_content">
-                                <div class="offers_price">Chata v Krkonoších</div>
-                                <div class="rating_r rating_r_3 offers_rating" data-rating="3">
-                                    <i></i>
-                                    <i></i>
-                                    <i></i>
-                                    <i></i>
-                                    <i></i>
-                                </div>
-                                <p class="offers_text">Dobrý den, mé jméno je Milada Dvořáková a sháním náhradníka na 5 dní pro tuto nádhernou chatu v Krkonoších</p>
-                                <div class="offers_icons mb-15">
-                                    <ul class="">
-                                        <li>Autor: <b style="color: black">Milada Dvořáková</b></li>
-                                        <li>tel. číslo: <b style="color: black">+420 773 493 616</b></li>
-                                        <li>Datum: <b style="color: black">12.3. 2018 - 17.3. 2018</b></li>
-                                        <li>Lokace: <b style="color: black">Krkonoše, škraloupy</b></li>
-                                    </ul>
-                                </div>
-                                <div class="button book_button"><a href="#">Odkoupit<span></span><span></span><span></span></a></div>
-                                <div class="offer_reviews">
-                                    <div class="offer_reviews_content">
-                                        <div class="offer_reviews_title">Cena</div>
-                                        <div class="offer_reviews_subtitle">5 dní</div>
+                            <div class="col-lg-8">
+                                <div class="offers_content">
+                                    <div class="offers_price">@viewModel[i].TripModel.Name</div>
+                                    <div class="rating_r rating_r_3 offers_rating" data-rating="3">
+                                        <i></i>
+                                        <i></i>
+                                        <i></i>
+                                        <i></i>
+                                        <i></i>
                                     </div>
-                                    <div class="offer_reviews_rating text-center">33 600,-</div>
+                                    <p class="offers_text">@viewModel[i].TripModel.Description</p>
+                                    <div class="offers_icons mb-15">
+                                        <ul class="">
+                                            <li>Autor: <b style="color: black">@viewModel[i].TripModel.AuthorName</b></li>
+                                            <li>tel. číslo: <b style="color: black">@viewModel[i].PhoneNumber</b></li>
+                                            <li>Datum: <b style="color: black">@viewModel[i].TripModel.From.ToShortDateString() - @viewModel[i].TripModel.From.ToShortDateString()</b></li>
+                                            <li>Lokace: <b style="color: black">@viewModel[i].TripModel.Location</b></li>
+                                        </ul>
+                                    </div>
+                                    <div class="button book_button"><a href="#">Odkoupit<span></span><span></span><span></span></a></div>
+                                    <div class="offer_reviews">
+                                        <div class="offer_reviews_content">
+                                            <div class="offer_reviews_title">Cena</div>
+                                            <div class="offer_reviews_subtitle">@viewModel[i].TripModel.Nights dní</div>
+                                        </div>
+                                        <div class="offer_reviews_rating text-center">@viewModel[i].TripModel.Price,-</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                }
+
+
 
                 <div class="offers_item rating_5">
                     <div class="row">

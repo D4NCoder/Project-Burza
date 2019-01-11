@@ -1,0 +1,139 @@
+﻿@using Project_Burza.Models;
+@model UserModel;
+
+
+
+@{
+    var oldName = Model.Email;
+
+}
+
+<!-- start banner Area -->
+<section class="relative about-banner">
+    <div class="overlay overlay-bg"></div>
+    <div class="container">
+        <div class="row d-flex align-items-center justify-content-center">
+            <div class="about-content col-lg-12">
+                <h1 class="text-white">
+                    Správa účtu
+                </h1>
+                <p class="text-white link-nav"><a href="@Url.Action("Index", "Home")">Domů </a>  <span class="lnr lnr-arrow-right"></span>  <a href="@Url.Action("LawSecurity", "Home")"> Správa účtu</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="">
+    <div class="emp-profile">
+        <form method="post" id="SaveAccountChanges" asp-action="EditUserAsync" asp-controller="Account">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="profile-img">
+                        <!--TODO: Insert code for getting image from Database-->
+                        <!--TODO: Otherwise set this picture to default => find default profile picture-->
+                        @if (!(bool)ViewData["isProfilePicture"])
+                        {
+                            <img id="imgToUpload" name="imgToUpload" src="~/ProfilePic/ProfileAvatar.png" alt="" />
+                            <div class="file btn btn-lg btn-primary">
+                                Změnit fotku
+                                <input type="file" name="file" id="upload" />
+                            </div>
+                        }
+                        else
+                        {
+                            <img id="imgToUpload" name="imgToUpload" src="@Url.Action("GetProfilePictureFromDatabase", "Account")" alt="" />
+                            <div class="file btn btn-lg btn-primary">
+                                Změnit fotku
+                                <input type="file" name="file" id="upload" />
+                            </div>
+                        }
+
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="profile-head">
+                        <h5>
+                            Dan Vyhlídal
+                        </h5>
+                        <h6>
+                            Běžný uživatel
+                        </h6>
+                        <!--TODO: Insert code for getting Count of all posts that that user have rn (Use Data)-->
+                        <p class="proile-rating">Příspěvky : <span>0</span></p>
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Info</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <input form="SaveAccountChanges" type="submit" class="genric-btn default-border circle medium mb-3" name="btnAddMore">Uložit změny</input>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4" style="visibility:hidden;">
+
+                </div>
+                <div class="col-md-8">
+                    <div class="tab-content profile-tab" id="myTabContent">
+                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Jméno a Příjmení</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" id="NameAndSurname" name="NameAndSurname" asp-for="NameAndSurname" required="" class="single-input-primary">
+                                </div>
+                            </div>
+                            <input type="text" style="visibility:hidden;" id="oldName" name="oldName" value="@oldName" required="" class="single-input-primary" />
+                            @Html.HiddenFor(m => m.Id)
+                            @Html.HiddenFor(m => m.UserAgreement)
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Email</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" id="Email" name="Email" asp-for="Email" required="" class="single-input-primary">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Heslo</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="password" name="password" required="" class="single-input-primary disabled" value="**********">
+                                </div>
+
+                                <div class="col-md-6 pl-5">
+                                    <label>Nové heslo</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="password" name="Password" id="Password" asp-for="Password" required="" class="single-input-primary">
+                                </div>
+                                <div class="col-md-6 pl-5">
+                                    <label>Opakovat heslo</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="password" name="PasswordAgain" id="PasswordAgain" asp-for="PasswordAgain" required="" class="single-input-primary">
+                                </div>
+
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Telefonní číslo</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" name="PhoneNumber" asp-for="PhoneNumber" required="" class="single-input-primary">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+
+
