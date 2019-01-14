@@ -51,7 +51,6 @@ C:\Users\Dan\source\repos\Project-Burza\Project-Burza\bin\Debug\netcoreapp2.1\Pr
 C:\Users\Dan\source\repos\Project-Burza\Project-Burza\obj\Debug\netcoreapp2.1\Project_Burza.csproj.CoreCompileInputs.cache
 C:\Users\Dan\source\repos\Project-Burza\Project-Burza\obj\Debug\netcoreapp2.1\Project_Burza.RazorAssemblyInfo.cache
 C:\Users\Dan\source\repos\Project-Burza\Project-Burza\obj\Debug\netcoreapp2.1\Project_Burza.RazorAssemblyInfo.cs
-C:\Users\Dan\source\repos\Project-Burza\Project-Burza\obj\Debug\netcoreapp2.1\UserSecretsAssemblyInfo.cs
 C:\Users\Dan\source\repos\Project-Burza\Project-Burza\obj\Debug\netcoreapp2.1\Project_Burza.AssemblyInfoInputs.cache
 C:\Users\Dan\source\repos\Project-Burza\Project-Burza\obj\Debug\netcoreapp2.1\Project_Burza.AssemblyInfo.cs
 C:\Users\Dan\source\repos\Project-Burza\Project-Burza\obj\Debug\netcoreapp2.1\Project_Burza.TagHelpers.input.cache
@@ -84,4 +83,7 @@ C:\Users\Dan\source\repos\Project-Burza\Project-Burza\obj\Debug\netcoreapp2.1\Pr
 C:\Users\Dan\source\repos\Project-Burza\Project-Burza\obj\Debug\netcoreapp2.1\Project_Burza.pdb
 C:\Users\Dan\source\repos\Project-Burza\Project-Burza\obj\Debug\netcoreapp2.1\Project_Burza.csproj.CopyComplete
 C:\Users\Dan\source\repos\Project-Burza\Project-Burza\obj\Debug\netcoreapp2.1\Razor\Views\Account\EditUser.g.cshtml.cs
+C:\Users\Dan\source\repos\Project-Burza\Project-Burza\obj\Debug\netcoreapp2.1\UserSecretsAssemblyInfo.cs
+C:\Users\Dan\source\repos\Project-Burza\Project-Burza\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_TripInfoModalPartial.g.cshtml.cs
+C:\Users\Dan\source\repos\Project-Burza\Project-Burza\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_TripInfoBuyModalPartial.g.cshtml.cs
 C:\Users\Dan\source\repos\Project-Burza\Project-Burza\obj\Debug\netcoreapp2.1\Project_Burza.csprojAssemblyReference.cache

@@ -6,6 +6,9 @@
 @{
     var oldName = Model.Email;
 
+    string base64 = Convert.ToBase64String(Model.ProfilePicture);
+    string source = String.Format("data:image/gif;base64,{0}", base64);
+
 }
 
 <!-- start banner Area -->
@@ -25,28 +28,17 @@
 
 <section class="">
     <div class="emp-profile">
-        <form method="post" id="SaveAccountChanges" asp-action="EditUserAsync" asp-controller="Account">
+        <form method="post" id="SaveAccountChanges" enctype="multipart/form-data" asp-action="EditUserAsync" asp-controller="Account">
             <div class="row">
                 <div class="col-md-4">
                     <div class="profile-img">
                         <!--TODO: Insert code for getting image from Database-->
                         <!--TODO: Otherwise set this picture to default => find default profile picture-->
-                        @if (!(bool)ViewData["isProfilePicture"])
-                        {
-                            <img id="imgToUpload" name="imgToUpload" src="~/ProfilePic/ProfileAvatar.png" alt="" />
+                            <img id="imgToUpload" name="imgToUpload"  src="@source" alt="" />
                             <div class="file btn btn-lg btn-primary">
                                 Změnit fotku
-                                <input type="file" name="file" id="upload" />
+                                <input type="file" name="file" accept="image/x-png,image/jpeg" onchange="onFileSelected(event)"  id="upload" />
                             </div>
-                        }
-                        else
-                        {
-                            <img id="imgToUpload" name="imgToUpload" src="@Url.Action("GetProfilePictureFromDatabase", "Account")" alt="" />
-                            <div class="file btn btn-lg btn-primary">
-                                Změnit fotku
-                                <input type="file" name="file" id="upload" />
-                            </div>
-                        }
 
                     </div>
                 </div>
@@ -68,7 +60,7 @@
                     </div>
                 </div>
                 <div class="col-md-2">
-                    <input form="SaveAccountChanges" type="submit" class="genric-btn default-border circle medium mb-3" name="btnAddMore">Uložit změny</input>
+                    <input form="SaveAccountChanges" type="submit" value="Uložit změny" class="genric-btn default-border circle medium mb-3" name="btnAddMore" />
                 </div>
             </div>
             <div class="row">
@@ -86,7 +78,6 @@
                                     <input type="text" id="NameAndSurname" name="NameAndSurname" asp-for="NameAndSurname" required="" class="single-input-primary">
                                 </div>
                             </div>
-                            <input type="text" style="visibility:hidden;" id="oldName" name="oldName" value="@oldName" required="" class="single-input-primary" />
                             @Html.HiddenFor(m => m.Id)
                             @Html.HiddenFor(m => m.UserAgreement)
                             <div class="row">
@@ -109,13 +100,13 @@
                                     <label>Nové heslo</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="password" name="Password" id="Password" asp-for="Password" required="" class="single-input-primary">
+                                    <input type="password" name="Password" id="Password" asp-for="Password"  class="single-input-primary">
                                 </div>
                                 <div class="col-md-6 pl-5">
                                     <label>Opakovat heslo</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="password" name="PasswordAgain" id="PasswordAgain" asp-for="PasswordAgain" required="" class="single-input-primary">
+                                    <input type="password" name="PasswordAgain" id="PasswordAgain" asp-for="PasswordAgain"  class="single-input-primary">
                                 </div>
 
 
@@ -127,6 +118,8 @@
                                 <div class="col-md-6">
                                     <input type="text" name="PhoneNumber" asp-for="PhoneNumber" required="" class="single-input-primary">
                                 </div>
+                                <input type="text" style="visibility:hidden;" style="width:0px; height:0px; margin:auto; padding:unset;" id="oldName" name="oldName" value="@oldName" required="" class="single-input-primary" />
+
                             </div>
                         </div>
                     </div>
@@ -137,3 +130,18 @@
 </section>
 
 
+<script>
+    function onFileSelected(event) {
+      var selectedFile = event.target.files[0];
+      var reader = new FileReader();
+
+      var imgtag = document.getElementById("imgToUpload");
+      imgtag.title = selectedFile.name;
+
+      reader.onload = function(event) {
+        imgtag.src = event.target.result;
+      };
+
+      reader.readAsDataURL(selectedFile);
+    }
+</script>

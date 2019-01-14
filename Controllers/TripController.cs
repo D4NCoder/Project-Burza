@@ -25,6 +25,8 @@ namespace Project_Burza.Controllers
 
         public async Task<IActionResult> Trips()
         {
+            if (ViewData["DetailsInt"] == null)
+                ViewData["DetailsInt"] = 0;
 
             List<TripViewModel> model = new List<TripViewModel>();
 
@@ -35,7 +37,11 @@ namespace Project_Burza.Controllers
             
                 string authorName = _context.TripPosts.ToList()[i].AuthorName;
 
-                tripMod.PhoneNumber = await _userManager.GetPhoneNumberAsync(await _userManager.FindByNameAsync(authorName));
+                var user = await _userManager.FindByNameAsync(authorName);
+
+                tripMod.PhoneNumber = await _userManager.GetPhoneNumberAsync(user);
+                tripMod.NameAndSurname = user.NameAndSurname;
+
 
                 model.Add(tripMod);
 
@@ -45,23 +51,19 @@ namespace Project_Burza.Controllers
             return View(model);
         }
 
-        public async Task<FileResult> GetPictureFromDatabase(byte[] image)
+
+        public IActionResult ShowTripInfo(int id)
         {
+            var model = _context.TripPosts.Where(x => x.Id == id).FirstOrDefault();
 
-            byte[] pic = image;
-
-            return File(pic, "image/png");
+            return PartialView("_TripInfoModalPartial", model);
         }
 
-        public async Task<FileResult> GetProfilePictureFromDatabase()
+        public IActionResult ShowTripBuyInfo(int id)
         {
-            var username = HttpContext.User.Identity.Name;
+            var model = _context.TripPosts.Where(x => x.Id == id).FirstOrDefault();
 
-            var user = await _userManager.FindByNameAsync(username);
-
-            byte[] pic = user.ProfilePicture;
-
-            return File(pic, "image/png");
+            return PartialView("_TripInfoBuyModalPartial", model);
         }
     }
 }

@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Project_Burza.Data;
@@ -18,17 +19,20 @@ namespace Project_Burza.Controllers
         protected SignInManager<ApplicationUser> _signInManager;
         protected ApplicationDbContext _context;
 
-        public LoginController(UserManager<ApplicationUser> userManager, ApplicationDbContext context, SignInManager<ApplicationUser> signInManager)
+        private IHostingEnvironment _env;
+
+        public LoginController(UserManager<ApplicationUser> userManager, ApplicationDbContext context, SignInManager<ApplicationUser> signInManager, IHostingEnvironment env)
         {
             this._userManager = userManager;
             this._context = context;
             this._signInManager = signInManager;
+            this._env = env;
         }
 
         public IActionResult Login()
         {
             // This is making sure that our database exists
-            //_context.Database.EnsureCreated();
+            _context.Database.EnsureCreated();
 
             return View();
         }
@@ -53,17 +57,24 @@ namespace Project_Burza.Controllers
             return Redirect(@Url.Action("Login", "Login"));
         }
 
+
         public async Task<IActionResult> CreateAccountAsync(UserModel model)
         {
+            var webRoot = _env.WebRootPath;
+            var path = webRoot + "/ProfilePic/ProfileAvatar.png";
+
+            var photo = System.IO.File.ReadAllBytes(path);
+
             // Making sure that passwords match together and that user agrees with terms
-            if(model.Password == model.PasswordAgain && model.UserAgreement == true)
+            if (model.Password == model.PasswordAgain && model.UserAgreement == true)
             {
                 var apUser = new ApplicationUser
                 {
                     Email = model.Email,
                     NameAndSurname = model.NameAndSurname,
                     PhoneNumber = model.PhoneNumber,
-                    UserName = model.Email
+                    UserName = model.Email,
+                    ProfilePicture = photo                  
 
                 };
 

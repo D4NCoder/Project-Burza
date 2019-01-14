@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.1",
-    "signature": "4245e858036ac9b1e533d6a2273a358debba6993"
+    "signature": "787d7b7ad01c91dd9c4d20bb8f878983fd556268"
   },
   "compilationOptions": {
     "defines": [
@@ -27,7 +27,10 @@
           "MailKit": "2.0.6",
           "Microsoft.AspNetCore.App": "2.1.1",
           "Microsoft.NETCore.App": "2.1.0",
-          "Microsoft.VisualStudio.Web.CodeGeneration.Design": "2.1.4"
+          "Microsoft.VisualStudio.Web.CodeGeneration.Design": "2.1.4",
+          "Microsoft.jQuery.Unobtrusive.Ajax": "3.2.6",
+          "MicrosoftAjax": "4.0.20526",
+          "MicrosoftMvcAjax.Mvc5": "5.0.0"
         },
         "runtime": {
           "Project_Burza.dll": {}
@@ -36,6 +39,7 @@
           "Project_Burza.dll": {}
         }
       },
+      "jQuery/1.8.0": {},
       "MailKit/2.0.6": {
         "dependencies": {
           "MimeKit": "2.0.6",
@@ -94,6 +98,11 @@
         },
         "compile": {
           "lib/netstandard1.3/Microsoft.CodeAnalysis.Workspaces.dll": {}
+        }
+      },
+      "Microsoft.jQuery.Unobtrusive.Ajax/3.2.6": {
+        "dependencies": {
+          "jQuery": "1.8.0"
         }
       },
       "Microsoft.NETCore.App/2.1.0": {
@@ -387,6 +396,12 @@
           "Microsoft.NETCore.Platforms": "2.1.0",
           "Microsoft.NETCore.Targets": "2.1.0",
           "System.Runtime": "4.3.0"
+        }
+      },
+      "MicrosoftAjax/4.0.20526": {},
+      "MicrosoftMvcAjax.Mvc5/5.0.0": {
+        "dependencies": {
+          "MicrosoftAjax": "4.0.20526"
         }
       },
       "MimeKit/2.0.6": {
@@ -3696,6 +3711,13 @@
       "serviceable": false,
       "sha512": ""
     },
+    "jQuery/1.8.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-j+5U/D9DWcMQGUhfx/q14qlU/7UH0oqUa1tC9/4pVwMJSJuKOF+KBBJrv57kzc/2c/vtWdinpUywmEg4jT+zug==",
+      "path": "jquery/1.8.0",
+      "hashPath": "jquery.1.8.0.nupkg.sha512"
+    },
     "MailKit/2.0.6": {
       "type": "package",
       "serviceable": true,
@@ -3716,6 +3738,13 @@
       "sha512": "sha512-xt6VmGncJW14z3O0/k7+0cO8w9tB3O6CUL6sM6LesgGmD6zZPbWKY9KpRgV7RewA1flLuXBaUknRjwj0kLA6/g==",
       "path": "microsoft.codeanalysis.workspaces.common/2.8.0",
       "hashPath": "microsoft.codeanalysis.workspaces.common.2.8.0.nupkg.sha512"
+    },
+    "Microsoft.jQuery.Unobtrusive.Ajax/3.2.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-oNKDdH3/MnXOtTAye9x7NuZxEKq3jUpY6IEC6QXZdpk2ta7btCtyh4/JlTqe/X6ufUdG2CTuzV/dKOJQDo1nWA==",
+      "path": "microsoft.jquery.unobtrusive.ajax/3.2.6",
+      "hashPath": "microsoft.jquery.unobtrusive.ajax.3.2.6.nupkg.sha512"
     },
     "Microsoft.NETCore.App/2.1.0": {
       "type": "package",
@@ -3821,6 +3850,20 @@
       "sha512": "sha512-9ZQKCWxH7Ijp9BfahvL2Zyf1cJIk8XYLF6Yjzr2yi0b2cOut/HQ31qf1ThHAgCc3WiZMdnWcfJCgN82/0UunxA==",
       "path": "microsoft.win32.primitives/4.3.0",
       "hashPath": "microsoft.win32.primitives.4.3.0.nupkg.sha512"
+    },
+    "MicrosoftAjax/4.0.20526": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-XEv2sEIApdGp6AmRxqEjWdakdezOTiTsSmJalBPDJgzO8Jv8xHbipxzEsi2PgAAjnrF1GTFNL5xMmLFklcrhWA==",
+      "path": "microsoftajax/4.0.20526",
+      "hashPath": "microsoftajax.4.0.20526.nupkg.sha512"
+    },
+    "MicrosoftMvcAjax.Mvc5/5.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-DGs0lFmyjvohxRWZTrBNv0OnaCRVUWQItNA+cQIS47UBuZmHDDNuoN6Y5EJJWV9aZn8UV34Qwv0NZa8VkhJoqA==",
+      "path": "microsoftmvcajax.mvc5/5.0.0",
+      "hashPath": "microsoftmvcajax.mvc5.5.0.0.nupkg.sha512"
     },
     "MimeKit/2.0.6": {
       "type": "package",

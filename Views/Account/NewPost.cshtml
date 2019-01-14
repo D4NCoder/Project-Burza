@@ -47,19 +47,19 @@
                         <div class="row form-group">
                             <div class="col-md-12">
                                 <label class="font-weight-bold" for="password">Od (datum)</label>
-                                <input type="date" id="from" asp-for="From" name="from" class="single-input-accent">
+                                <input type="date" id="from" asp-for="From" data-date-format="DD MMMM YYYY" name="from" class="single-input-accent">
                             </div>
                         </div>
                         <div class="row form-group">
                             <div class="col-md-12">
                                 <label class="font-weight-bold" for="password">Do (datum)</label>
-                                <input type="date" id="to" asp-for="To" name="to" class="single-input-accent">
+                                <input type="date" id="to" asp-for="To" data-date-format="DD MMMM YYYY" data-date="" name="to" class="single-input-accent">
                             </div>
                         </div>
 
                         <div class="row form-group">
                             <div class="col-md-12">
-                                <label class="font-weight-bold" for="password">Popis(max. 500 znaků)</label>
+                                <label class="font-weight-bold" for="password">Popis</label>
                                 <textarea class="single-textarea" asp-for="Description" required=""></textarea>
                             </div>
                         </div>

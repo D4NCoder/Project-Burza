@@ -6,6 +6,7 @@
     display: inline-block;
 }
 
+
 .TutorialDiv {
     border: black;
 }
@@ -1228,3 +1229,9 @@ ul.notika-menu-wrap li a{
 	margin-left: auto;
 	margin-top:10px;
 }
+
+input[type=date]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    display: none;
+}
+

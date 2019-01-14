@@ -2,6 +2,9 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v2.1": {
+      "jQuery/1.8.0": {
+        "type": "package"
+      },
       "MailKit/2.0.6": {
         "type": "package",
         "dependencies": {
@@ -2428,6 +2431,12 @@
           "lib/netstandard1.4/Microsoft.IdentityModel.Xml.dll": {}
         }
       },
+      "Microsoft.jQuery.Unobtrusive.Ajax/3.2.6": {
+        "type": "package",
+        "dependencies": {
+          "jQuery": "1.8.0"
+        }
+      },
       "Microsoft.Net.Http.Headers/2.1.1": {
         "type": "package",
         "dependencies": {
@@ -2768,6 +2777,15 @@
             "assetType": "runtime",
             "rid": "win"
           }
+        }
+      },
+      "MicrosoftAjax/4.0.20526": {
+        "type": "package"
+      },
+      "MicrosoftMvcAjax.Mvc5/5.0.0": {
+        "type": "package",
+        "dependencies": {
+          "MicrosoftAjax": "4.0.20526"
         }
       },
       "MimeKit/2.0.6": {
@@ -4887,6 +4905,23 @@
     }
   },
   "libraries": {
+    "jQuery/1.8.0": {
+      "sha512": "j+5U/D9DWcMQGUhfx/q14qlU/7UH0oqUa1tC9/4pVwMJSJuKOF+KBBJrv57kzc/2c/vtWdinpUywmEg4jT+zug==",
+      "type": "package",
+      "path": "jquery/1.8.0",
+      "files": [
+        ".signature.p7s",
+        "Content/Scripts/jquery-1.8.0-vsdoc.js",
+        "Content/Scripts/jquery-1.8.0.js",
+        "Content/Scripts/jquery-1.8.0.min.js",
+        "Tools/common.ps1",
+        "Tools/install.ps1",
+        "Tools/jquery-1.8.0.intellisense.js",
+        "Tools/uninstall.ps1",
+        "jquery.1.8.0.nupkg.sha512",
+        "jquery.nuspec"
+      ]
+    },
     "MailKit/2.0.6": {
       "sha512": "6V2q9gAVPNHCpMlmJheLdC45f4HXW5fh1CFq7c5oFeJceJpcFVxRf6ukyQufx4LYXt2lhqQIG21yfsPOhiKFdA==",
       "type": "package",
@@ -6986,6 +7021,18 @@
         "microsoft.identitymodel.xml.nuspec"
       ]
     },
+    "Microsoft.jQuery.Unobtrusive.Ajax/3.2.6": {
+      "sha512": "oNKDdH3/MnXOtTAye9x7NuZxEKq3jUpY6IEC6QXZdpk2ta7btCtyh4/JlTqe/X6ufUdG2CTuzV/dKOJQDo1nWA==",
+      "type": "package",
+      "path": "microsoft.jquery.unobtrusive.ajax/3.2.6",
+      "files": [
+        ".signature.p7s",
+        "Content/Scripts/jquery.unobtrusive-ajax.js",
+        "Content/Scripts/jquery.unobtrusive-ajax.min.js",
+        "microsoft.jquery.unobtrusive.ajax.3.2.6.nupkg.sha512",
+        "microsoft.jquery.unobtrusive.ajax.nuspec"
+      ]
+    },
     "Microsoft.Net.Http.Headers/2.1.1": {
       "sha512": "tNh1YCfZ943/d3WSE6cD57O05rhvi3lmKgwoi3zFg4wc/O/oec5FNHZmBCRau4GfzRC5zS/CBdOAkRwbvtZSaQ==",
       "type": "package",
@@ -7663,6 +7710,32 @@
         "runtimes/win/lib/netstandard2.0/Microsoft.Win32.Registry.dll",
         "useSharedDesignerContext.txt",
         "version.txt"
+      ]
+    },
+    "MicrosoftAjax/4.0.20526": {
+      "sha512": "XEv2sEIApdGp6AmRxqEjWdakdezOTiTsSmJalBPDJgzO8Jv8xHbipxzEsi2PgAAjnrF1GTFNL5xMmLFklcrhWA==",
+      "type": "package",
+      "path": "microsoftajax/4.0.20526",
+      "files": [
+        ".signature.p7s",
+        "Content/Scripts/MicrosoftAjax.debug.js",
+        "Content/Scripts/MicrosoftAjax.js",
+        "microsoftajax.4.0.20526.nupkg.sha512",
+        "microsoftajax.nuspec"
+      ]
+    },
+    "MicrosoftMvcAjax.Mvc5/5.0.0": {
+      "sha512": "DGs0lFmyjvohxRWZTrBNv0OnaCRVUWQItNA+cQIS47UBuZmHDDNuoN6Y5EJJWV9aZn8UV34Qwv0NZa8VkhJoqA==",
+      "type": "package",
+      "path": "microsoftmvcajax.mvc5/5.0.0",
+      "files": [
+        ".signature.p7s",
+        "Content/Scripts/MicrosoftMvcAjax.debug.js",
+        "Content/Scripts/MicrosoftMvcAjax.js",
+        "Content/Scripts/MicrosoftMvcValidation.debug.js",
+        "Content/Scripts/MicrosoftMvcValidation.js",
+        "microsoftmvcajax.mvc5.5.0.0.nupkg.sha512",
+        "microsoftmvcajax.mvc5.nuspec"
       ]
     },
     "MimeKit/2.0.6": {
@@ -12912,7 +12985,10 @@
       "MailKit >= 2.0.6",
       "Microsoft.AspNetCore.App >= 2.1.1",
       "Microsoft.NETCore.App >= 2.1.0",
-      "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 2.1.4"
+      "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 2.1.4",
+      "Microsoft.jQuery.Unobtrusive.Ajax >= 3.2.6",
+      "MicrosoftAjax >= 4.0.20526",
+      "MicrosoftMvcAjax.Mvc5 >= 5.0.0"
     ]
   },
   "packageFolders": {
@@ -12975,6 +13051,18 @@
             "suppressParent": "All",
             "target": "Package",
             "version": "[2.1.4, )"
+          },
+          "Microsoft.jQuery.Unobtrusive.Ajax": {
+            "target": "Package",
+            "version": "[3.2.6, )"
+          },
+          "MicrosoftAjax": {
+            "target": "Package",
+            "version": "[4.0.20526, )"
+          },
+          "MicrosoftMvcAjax.Mvc5": {
+            "target": "Package",
+            "version": "[5.0.0, )"
           }
         },
         "imports": [

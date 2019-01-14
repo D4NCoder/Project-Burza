@@ -2,10 +2,12 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Project_Burza.Data;
 using Project_Burza.Models;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -39,6 +41,8 @@ namespace Project_Burza.Controllers
 
             if (model.User.ProfilePicture == null)
                 ViewData["isProfilePicture"] = false;
+            else
+                ViewData["isProfilePicture"] = true;
 
 
             return View(model);
@@ -71,7 +75,7 @@ namespace Project_Burza.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> EditUserAsync([FromForm]UserModel model, string oldName)
+        public async Task<IActionResult> EditUserAsync([FromForm]UserModel model, string oldName, IFormFile file)
         {
 
                 // Find user by its name
@@ -83,9 +87,13 @@ namespace Project_Burza.Controllers
                 user.UserName = model.Email;
                 user.NameAndSurname = model.NameAndSurname;
                 user.PhoneNumber = model.PhoneNumber;
-                if(string.IsNullOrEmpty(model.Password))
+                if(file != null)
+                    user.ProfilePicture = await PutPictureToDatabase(file);
+                if(!string.IsNullOrEmpty(model.Password))
                     if(model.Password == model.PasswordAgain)
                         user.PasswordHash = _userManager.PasswordHasher.HashPassword(user, model.Password);
+                    // TODO: Redirect user to the same view with writen validation issues out
+
                 var result = await _userManager.UpdateAsync(user);
                 await _singInManager.RefreshSignInAsync(user);
 
@@ -111,9 +119,12 @@ namespace Project_Burza.Controllers
         public async Task<IActionResult> DeletePost(int idP)
         {
             // TODO: Implement Id feature to html code, so the script below can pull it from the atribute or something of specific html part
-            var entity = _context.TripPosts.Find(new { id = idP });
+            var entity = _context.TripPosts.Where(b => EF.Property<int>(b, "Id") == idP);
+            
+            foreach(var ent in entity)
+                _context.TripPosts.Remove(ent);
 
-            _context.TripPosts.Remove(entity);
+            _context.SaveChanges();
 
             return RedirectToAction("Index");
         }
@@ -128,6 +139,7 @@ namespace Project_Burza.Controllers
                 //Setting up authors name as name of the Logged in user
                 model.AuthorName = HttpContext.User.Identity.Name;
 
+
                 // Calculating nights based on difference of the dates
                 // The "To" date is the ending date
                 int nights = model.To.Date.Subtract(model.From.Date).Days;
@@ -138,7 +150,7 @@ namespace Project_Burza.Controllers
                 // Pull up the name of the picture
                 // Upload it on a server side
                 // Check if the picture is really formated in jpg / png
-                model.TripPicture = await PutTripPictureToDatabase(file);
+                model.TripPicture = await PutPictureToDatabase(file);
 
                 _context.TripPosts.Add(model);
                 await _context.SaveChangesAsync();
@@ -148,29 +160,7 @@ namespace Project_Burza.Controllers
             return RedirectToAction("Index");
         }
 
-
-        public async Task<FileResult> GetProfilePictureFromDatabase()
-        {
-            var username = HttpContext.User.Identity.Name;
-
-            var user = await _userManager.FindByNameAsync(username);
-
-            byte[] pic = user.ProfilePicture;
-
-            return File(pic, "image/png");
-        }
-
-        public async Task<byte[]> PutTripPictureToDatabase(IFormFile model)
-        {
-            using (var memoryStream = new MemoryStream())
-            {
-                await model.CopyToAsync(memoryStream);
-                return memoryStream.ToArray();
-            }
-        }
-
-
-        public async Task<byte[]> PutProfilePictureToDatabase(IFormFile model)
+        public async Task<byte[]> PutPictureToDatabase(IFormFile model)
         {
             using (var memoryStream = new MemoryStream())
             {

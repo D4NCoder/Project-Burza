@@ -1,0 +1,44 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@using Project_Burza.Data;
+
+@model TripModel
+
+@inject UserManager<ApplicationUser> UserManager
+
+@{
+    var user = await UserManager.FindByNameAsync(Model.AuthorName);
+    var Name = user.NameAndSurname;
+    var phoneNumber = user.PhoneNumber;
+
+
+    string base64 = Convert.ToBase64String(Model.TripPicture);
+    string source = String.Format("data:image/gif;base64,{0}", base64);
+}
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3 class="modal-title" id="myModalLabel">@Model.Name</h3>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+        </div>
+        <div class="modal-body">
+            <center>
+                    <img src="@source" id="aboutme" style="max-height=140px; max-width:240px;" border="0" class="img-circle"></a><br />
+                <p class="text-left mt-1">
+                    <span><b>Odkaz na webové stránky: </b><a target="_blank" href="@Model.WebsiteLink">@Model.WebsiteLink</a> </span><br /><br />
+                    <span><b>Autor: </b>@Name </span><br />
+                    <span><b>Tel. číslo: </b>@phoneNumber</span><br />
+                    <span><b>Od - Do: </b> @Model.From.ToShortDateString() - @Model.To.ToShortDateString()</span><br />
+                    <span><b>Lokace: </b>@Model.Location</span>
+                </p>
+            </center>
+            <hr>
+            <center>
+                <p class="text-left">
+                    <b>Popis: </b><br>
+                    @Model.Description
+                </p>
+                <br>
+            </center>
+        </div>
+
+    </div>

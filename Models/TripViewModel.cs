@@ -10,5 +10,7 @@ namespace Project_Burza.Models
         public TripModel TripModel { get; set; }
 
         public string PhoneNumber { get; set; }
+
+        public string NameAndSurname { get; set; }
     }
 }

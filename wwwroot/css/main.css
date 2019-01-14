@@ -4323,8 +4323,8 @@ body.mobile-nav-active #mobile-nav-toggle {
 .footer-area {
     background: #04091e;
     padding-top: 5px;
-}
 
+}
 .footer-area .footer-nav li {
     margin-top: 18px;
 }
@@ -4584,6 +4584,7 @@ body.mobile-nav-active #mobile-nav-toggle {
     padding-top: 40px;
     margin-top: 20px;
     border-top: 1px solid #333;
+
 }
 
 .footer-text a,

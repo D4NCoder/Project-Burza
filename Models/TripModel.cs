@@ -14,6 +14,7 @@ namespace Project_Burza.Models
         [MaxLength(200)]
         public string AuthorName { get; set; }
 
+
         [MaxLength(100)]
         public string Name { get; set; }
 
@@ -21,7 +22,6 @@ namespace Project_Burza.Models
 
         public int Nights { get; set; }
 
-        [MaxLength(500)]
         public string Description { get; set; }
 
         [MaxLength(200)]
